@@ -36,6 +36,19 @@ Annual_Data <- ods_sheets("data/Population_30June2023_annual.ods") %>%
 
 ```{r clean-data}
 # Visualising data and cleaning data
-print(Annual_Data[[4]])
 
+#data cleaning for sheet 1
+Annual_Data_A1_1 <- Annual_Data[[2]]
+
+Date_A1_1 <- as.character(Annual_Data_A1_1[1, ])
+
+colnames(Annual_Data_A1_1) <- Date_A1_1
+
+Annual_Data_A1_1 <- Annual_Data_A1_1[-1, ]
+             
+#selects A1.1, makes a new variable that is the dates when checked, replace the column names using the dates
+
+print(Annual_Data_A1_1)
+  
+  
 ```

@@ -402,27 +402,39 @@ Annual_Data &lt;- ods_sheets(&quot;data/Population_30June2023_annual.ods&quot;) 
 #22 data sheets  2-23 are data
 #needs cleaning, eg sheet 23 (A1_18)) columns are not correct the tiles are the original name then 2,3,4... and the date is in character form as a variable, each sheet needs cleaning in different ways</code></pre>
 <pre class="r"><code># Visualising data and cleaning data
-print(Annual_Data[[4]])</code></pre>
-<pre><code>## # A tibble: 175 × 34
-##    Table A1.3i(a): Untri…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10
-##    &lt;chr&gt;                   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 &lt;NA&gt;                    30-J… 30-S… 31-D… 31-M… 30-J… 30-S… 31-D… 31-M… 30-J…
-##  2 Males and females       8271  7964  7671  6820  6278  6724  6467  6494  6601 
-##  3 Violence against the p… 1829  1788  1713  1579  1500  1621  1562  1604  1646 
-##  4 Sexual offences         776   760   770   703   631   630   606   587   614  
-##  5 Robbery                 662   621   663   583   484   505   559   533   540  
-##  6 Theft offences          1388  1345  1248  1092  989   1087  988   955   953  
-##  7 Criminal damage and ar… 258   247   237   195   207   209   239   197   225  
-##  8 Drug offences           1093  1160  1032  862   811   872   813   920   831  
-##  9 Possession of weapons   282   313   296   290   273   334   304   296   346  
-## 10 Public order offences   165   165   156   132   128   120   129   116   158  
-## # ℹ 165 more rows
-## # ℹ abbreviated name:
-## #   ¹​`Table A1.3i(a): Untried prison population by offence group, age group and sex; 30 June 2015 onwards`
-## # ℹ 24 more variables: ...11 &lt;chr&gt;, ...12 &lt;chr&gt;, ...13 &lt;chr&gt;, ...14 &lt;chr&gt;,
-## #   ...15 &lt;chr&gt;, ...16 &lt;chr&gt;, ...17 &lt;chr&gt;, ...18 &lt;chr&gt;, ...19 &lt;chr&gt;,
-## #   ...20 &lt;chr&gt;, ...21 &lt;chr&gt;, ...22 &lt;chr&gt;, ...23 &lt;chr&gt;, ...24 &lt;chr&gt;,
-## #   ...25 &lt;chr&gt;, ...26 &lt;chr&gt;, ...27 &lt;chr&gt;, ...28 &lt;chr&gt;, ...29 &lt;chr&gt;, …</code></pre>
+
+#data cleaning for sheet 1
+Annual_Data_A1_1 &lt;- Annual_Data[[2]]
+
+Date_A1_1 &lt;- as.character(Annual_Data_A1_1[1, ])
+
+colnames(Annual_Data_A1_1) &lt;- Date_A1_1
+
+Annual_Data_A1_1 &lt;- Annual_Data_A1_1[-1, ]
+             
+#selects A1.1, makes a new variable that is the dates when checked, replace the column names using the dates
+
+print(Annual_Data_A1_1)</code></pre>
+<pre><code>## # A tibble: 287 × 167
+##    ``    `30-Jun-02` `30-Jun-03` `30-Jun-04` `30-Jun-05` `30-Jun-06` `30-Jun-07`
+##    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;      
+##  1 Male… 71218       73657       74488       76190       77982       79734      
+##  2 Rema… 13081       13073       12495       12864       13067       12844      
+##  3 Untr… 7877        7896        7716        8084        8064        8387       
+##  4 Conv… 5204        5177        4779        4780        5003        4457       
+##  5 Sent… 57306       59439       60976       62257       63493       65601      
+##  6 Fine… 34          46          52          78          89          68         
+##  7 Less… 5447        5969        5751        6009        5959        5165       
+##  8 Grea… 2349        2209        2306        2225        2525        2462       
+##  9 12 m… 21858       21378       21436       21628       21619       22840      
+## 10 12 m… -           -           -           -           -           -          
+## # ℹ 277 more rows
+## # ℹ 160 more variables: `30-Jun-08` &lt;chr&gt;, `30-Jun-09` &lt;chr&gt;,
+## #   `30-Jun-09(1)` &lt;chr&gt;, `30-Jun-10` &lt;chr&gt;, `31-Jul-10` &lt;chr&gt;,
+## #   `31-Aug-10` &lt;chr&gt;, `30-Sep-10` &lt;chr&gt;, `31-Oct-10` &lt;chr&gt;, `30-Nov-10` &lt;chr&gt;,
+## #   `31-Dec-10` &lt;chr&gt;, `31-Jan-11` &lt;chr&gt;, `28-Feb-11` &lt;chr&gt;, `31-Mar-11` &lt;chr&gt;,
+## #   `30-Apr-11` &lt;chr&gt;, `31-May-11` &lt;chr&gt;, `30-Jun-11` &lt;chr&gt;, `31-Jul-11` &lt;chr&gt;,
+## #   `31-Aug-11` &lt;chr&gt;, `30-Sep-11` &lt;chr&gt;, `31-Oct-11` &lt;chr&gt;, …</code></pre>
 
 
 
