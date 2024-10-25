@@ -15,20 +15,27 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r load-lib, message = FALSE}
+# packages
 library(tidyverse)
-# Add any other libraries here
-
-
+library(ggplot2)
+library(readODS) # data is not excel its .ods
 
 ```
 
 
 ```{r load-data}
-# load your data 
+# data 
+Annual_Data <- ods_sheets("data/Population_30June2023_annual.ods") %>%
+  set_names() %>% # for different names
+  map(~ read_ods("data/Population_30June2023_annual.ods", sheet = .x))
 
-
-
-
+#this takes a while and ignore the Name "names:New names:..." will fix later
+#22 data sheets  2-23 are data
+#needs cleaning, eg sheet 23 (A1_18)) columns are not correct the tiles are the original name then 2,3,4... and the date is in character form as a variable, each sheet needs cleaning in different ways
 ```
 
+```{r clean-data}
+# Visualising data and cleaning data
+print(Annual_Data[[4]])
 
+```
