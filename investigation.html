@@ -11,7 +11,7 @@
 
 <meta name="author" content="by Team-Name: User1, User2, User3, User4 &amp; User5" />
 
-<meta name="date" content="2024-10-25" />
+<meta name="date" content="2024-10-26" />
 
 <title>IDS investigation worksheet</title>
 
@@ -353,7 +353,7 @@ display: none;
 <h1 class="title toc-ignore">IDS investigation worksheet</h1>
 <h4 class="author">by Team-Name: User1, User2, User3, User4 &amp;
 User5</h4>
-<h4 class="date">2024-10-25</h4>
+<h4 class="date">2024-10-26</h4>
 
 </div>
 
@@ -404,37 +404,38 @@ Annual_Data &lt;- ods_sheets(&quot;data/Population_30June2023_annual.ods&quot;) 
 <pre class="r"><code># Visualising data and cleaning data
 
 #data cleaning for sheet 1
-Annual_Data_A1_1 &lt;- Annual_Data[[2]]
+Annual_Data_A1_1 &lt;- Annual_Data[[5]]
 
 Date_A1_1 &lt;- as.character(Annual_Data_A1_1[1, ])
 
 colnames(Annual_Data_A1_1) &lt;- Date_A1_1
 
 Annual_Data_A1_1 &lt;- Annual_Data_A1_1[-1, ]
+
              
 #selects A1.1, makes a new variable that is the dates when checked, replace the column names using the dates
 
 print(Annual_Data_A1_1)</code></pre>
-<pre><code>## # A tibble: 287 × 167
-##    ``    `30-Jun-02` `30-Jun-03` `30-Jun-04` `30-Jun-05` `30-Jun-06` `30-Jun-07`
+<pre><code>## # A tibble: 174 × 34
+##    ``    `30-Jun-15` `30-Sep-15` `31-Dec-15` `31-Mar-16` `30-Jun-16` `30-Sep-16`
 ##    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;      
-##  1 Male… 71218       73657       74488       76190       77982       79734      
-##  2 Rema… 13081       13073       12495       12864       13067       12844      
-##  3 Untr… 7877        7896        7716        8084        8064        8387       
-##  4 Conv… 5204        5177        4779        4780        5003        4457       
-##  5 Sent… 57306       59439       60976       62257       63493       65601      
-##  6 Fine… 34          46          52          78          89          68         
-##  7 Less… 5447        5969        5751        6009        5959        5165       
-##  8 Grea… 2349        2209        2306        2225        2525        2462       
-##  9 12 m… 21858       21378       21436       21628       21619       22840      
-## 10 12 m… -           -           -           -           -           -          
-## # ℹ 277 more rows
-## # ℹ 160 more variables: `30-Jun-08` &lt;chr&gt;, `30-Jun-09` &lt;chr&gt;,
-## #   `30-Jun-09(1)` &lt;chr&gt;, `30-Jun-10` &lt;chr&gt;, `31-Jul-10` &lt;chr&gt;,
-## #   `31-Aug-10` &lt;chr&gt;, `30-Sep-10` &lt;chr&gt;, `31-Oct-10` &lt;chr&gt;, `30-Nov-10` &lt;chr&gt;,
-## #   `31-Dec-10` &lt;chr&gt;, `31-Jan-11` &lt;chr&gt;, `28-Feb-11` &lt;chr&gt;, `31-Mar-11` &lt;chr&gt;,
-## #   `30-Apr-11` &lt;chr&gt;, `31-May-11` &lt;chr&gt;, `30-Jun-11` &lt;chr&gt;, `31-Jul-11` &lt;chr&gt;,
-## #   `31-Aug-11` &lt;chr&gt;, `30-Sep-11` &lt;chr&gt;, `31-Oct-11` &lt;chr&gt;, …</code></pre>
+##  1 Male… 3514        3426        3108        3246        3010        2827       
+##  2 Viol… 524         521         493         491         485         427        
+##  3 Sexu… 279         287         273         291         259         262        
+##  4 Robb… 293         257         252         249         245         193        
+##  5 Thef… 713         609         556         598         489         508        
+##  6 Crim… 151         135         123         130         108         124        
+##  7 Drug… 670         683         681         709         709         601        
+##  8 Poss… 142         170         147         156         130         136        
+##  9 Publ… 96          99          81          94          85          66         
+## 10 Misc… 167         213         169         166         175         180        
+## # ℹ 164 more rows
+## # ℹ 27 more variables: `31-Dec-16` &lt;chr&gt;, `31-Mar-17` &lt;chr&gt;, `30-Jun-17` &lt;chr&gt;,
+## #   `30-Sep-17` &lt;chr&gt;, `31-Dec-17` &lt;chr&gt;, `31-Mar-18` &lt;chr&gt;, `30-Jun-18` &lt;chr&gt;,
+## #   `30-Sep-18` &lt;chr&gt;, `31-Dec-18` &lt;chr&gt;, `31-Mar-19` &lt;chr&gt;, `30-Jun-19` &lt;chr&gt;,
+## #   `30-Sep-19` &lt;chr&gt;, `31-Dec-19` &lt;chr&gt;, `31-Mar-20` &lt;chr&gt;, `30-Jun-20` &lt;chr&gt;,
+## #   `30-Sep-20` &lt;chr&gt;, `31-Dec-20` &lt;chr&gt;, `31-Mar-21` &lt;chr&gt;, `30-Jun-21` &lt;chr&gt;,
+## #   `30-Sep-21` &lt;chr&gt;, `31-Dec-21` &lt;chr&gt;, `31-Mar-22` &lt;chr&gt;, …</code></pre>
 
 
 
