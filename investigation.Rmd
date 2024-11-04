@@ -30,7 +30,7 @@ Annual_Data <- ods_sheets("data/Population_30June2023_annual.ods") %>%
   map(~ read_ods("data/Population_30June2023_annual.ods", sheet=.x))
 ```
 
-```{r clean-data}
+```{r clean-data,fig.width=10, fig.height=5}
 # Visualising data and cleaning data
 
 #data cleaning for sheet 1
@@ -42,18 +42,27 @@ colnames(Annual_Data_A1_3b) <- Date_A1_3b
 
 Annual_Data_A1_3b <- Annual_Data_A1_3b[-1, ]
 
-colnames(Annual_Data_A1_3b)[1]<-"anything"
-
-Annual_Data_A1_3b
+colnames(Annual_Data_A1_3b)[1]<-"Group"
 
 Annual_Data_A1_3b <- Annual_Data_A1_3b %>%
-  slice(1,15,29,43)
+  slice(1,15,29,43,58,115)
 
+Annual_Data_A1_3b <- Annual_Data_A1_3b %>%
+  pivot_longer(!Group, names_to = "Date", values_to = "Arrests") %>%
+  mutate(Date = as.Date(Date, format = "%d-%b-%y"),
+         Arrests = as.numeric(Arrests))
 
-
-#selects A1.1, makes a new variable that is the dates when checked, replace the column names using the dates
+ggplot(data = Annual_Data_A1_3b,
+       mapping = aes(
+         x = Date,
+         y = Arrests,
+         group = Group,
+         colour = Group)) +
+  geom_line(size = 1) +
+  facet_wrap(~Group, scales = "free")
 
 print(Annual_Data_A1_3b)
   
-  
 ```
+
+
