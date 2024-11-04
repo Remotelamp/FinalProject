@@ -50,6 +50,7 @@ Annual_Data_A1_3b <- Annual_Data_A1_3b %>%
   slice(1,15,29,43)
 
 
+
 #selects A1.1, makes a new variable that is the dates when checked, replace the column names using the dates
 
 print(Annual_Data_A1_3b)

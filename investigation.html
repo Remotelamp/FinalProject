@@ -11,7 +11,7 @@
 
 <meta name="author" content="by Team-Name: User1, User2, User3, User4 &amp; User5" />
 
-<meta name="date" content="2024-10-26" />
+<meta name="date" content="2024-11-04" />
 
 <title>IDS investigation worksheet</title>
 
@@ -353,7 +353,7 @@ display: none;
 <h1 class="title toc-ignore">IDS investigation worksheet</h1>
 <h4 class="author">by Team-Name: User1, User2, User3, User4 &amp;
 User5</h4>
-<h4 class="date">2024-10-26</h4>
+<h4 class="date">2024-11-04</h4>
 
 </div>
 
@@ -373,7 +373,7 @@ library(readODS) # data is not excel its .ods</code></pre>
 <pre class="r"><code># data 
 Annual_Data &lt;- ods_sheets(&quot;data/Population_30June2023_annual.ods&quot;) %&gt;%
   set_names() %&gt;% # for different names
-  map(~ read_ods(&quot;data/Population_30June2023_annual.ods&quot;, sheet = .x))</code></pre>
+  map(~ read_ods(&quot;data/Population_30June2023_annual.ods&quot;, sheet=.x))</code></pre>
 <pre><code>## New names:
 ## New names:
 ## New names:
@@ -398,44 +398,61 @@ Annual_Data &lt;- ods_sheets(&quot;data/Population_30June2023_annual.ods&quot;) 
 ## New names:
 ## New names:
 ## • `` -&gt; `...2`</code></pre>
-<pre class="r"><code>#this takes a while and ignore the Name &quot;names:New names:...&quot; will fix later
-#22 data sheets  2-23 are data
-#needs cleaning, eg sheet 23 (A1_18)) columns are not correct the tiles are the original name then 2,3,4... and the date is in character form as a variable, each sheet needs cleaning in different ways</code></pre>
 <pre class="r"><code># Visualising data and cleaning data
 
 #data cleaning for sheet 1
-Annual_Data_A1_1 &lt;- Annual_Data[[5]]
+Annual_Data_A1_3b &lt;- Annual_Data[[5]]
 
-Date_A1_1 &lt;- as.character(Annual_Data_A1_1[1, ])
+Date_A1_3b &lt;- as.character(Annual_Data_A1_3b[1,])
 
-colnames(Annual_Data_A1_1) &lt;- Date_A1_1
+colnames(Annual_Data_A1_3b) &lt;- Date_A1_3b
 
-Annual_Data_A1_1 &lt;- Annual_Data_A1_1[-1, ]
+Annual_Data_A1_3b &lt;- Annual_Data_A1_3b[-1, ]
 
-             
+colnames(Annual_Data_A1_3b)[1]&lt;-&quot;anything&quot;
+
+Annual_Data_A1_3b</code></pre>
+<pre><code>## # A tibble: 174 × 34
+##    anything          `30-Jun-15` `30-Sep-15` `31-Dec-15` `31-Mar-16` `30-Jun-16`
+##    &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;      
+##  1 Males and females 3514        3426        3108        3246        3010       
+##  2 Violence against… 524         521         493         491         485        
+##  3 Sexual offences   279         287         273         291         259        
+##  4 Robbery           293         257         252         249         245        
+##  5 Theft offences    713         609         556         598         489        
+##  6 Criminal damage … 151         135         123         130         108        
+##  7 Drug offences     670         683         681         709         709        
+##  8 Possession of we… 142         170         147         156         130        
+##  9 Public order off… 96          99          81          94          85         
+## 10 Miscellaneous cr… 167         213         169         166         175        
+## # ℹ 164 more rows
+## # ℹ 28 more variables: `30-Sep-16` &lt;chr&gt;, `31-Dec-16` &lt;chr&gt;, `31-Mar-17` &lt;chr&gt;,
+## #   `30-Jun-17` &lt;chr&gt;, `30-Sep-17` &lt;chr&gt;, `31-Dec-17` &lt;chr&gt;, `31-Mar-18` &lt;chr&gt;,
+## #   `30-Jun-18` &lt;chr&gt;, `30-Sep-18` &lt;chr&gt;, `31-Dec-18` &lt;chr&gt;, `31-Mar-19` &lt;chr&gt;,
+## #   `30-Jun-19` &lt;chr&gt;, `30-Sep-19` &lt;chr&gt;, `31-Dec-19` &lt;chr&gt;, `31-Mar-20` &lt;chr&gt;,
+## #   `30-Jun-20` &lt;chr&gt;, `30-Sep-20` &lt;chr&gt;, `31-Dec-20` &lt;chr&gt;, `31-Mar-21` &lt;chr&gt;,
+## #   `30-Jun-21` &lt;chr&gt;, `30-Sep-21` &lt;chr&gt;, `31-Dec-21` &lt;chr&gt;, …</code></pre>
+<pre class="r"><code>Annual_Data_A1_3b &lt;- Annual_Data_A1_3b %&gt;%
+  slice(1,15,29,43)
+
+
 #selects A1.1, makes a new variable that is the dates when checked, replace the column names using the dates
 
-print(Annual_Data_A1_1)</code></pre>
-<pre><code>## # A tibble: 174 × 34
-##    ``    `30-Jun-15` `30-Sep-15` `31-Dec-15` `31-Mar-16` `30-Jun-16` `30-Sep-16`
-##    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;      
-##  1 Male… 3514        3426        3108        3246        3010        2827       
-##  2 Viol… 524         521         493         491         485         427        
-##  3 Sexu… 279         287         273         291         259         262        
-##  4 Robb… 293         257         252         249         245         193        
-##  5 Thef… 713         609         556         598         489         508        
-##  6 Crim… 151         135         123         130         108         124        
-##  7 Drug… 670         683         681         709         709         601        
-##  8 Poss… 142         170         147         156         130         136        
-##  9 Publ… 96          99          81          94          85          66         
-## 10 Misc… 167         213         169         166         175         180        
-## # ℹ 164 more rows
-## # ℹ 27 more variables: `31-Dec-16` &lt;chr&gt;, `31-Mar-17` &lt;chr&gt;, `30-Jun-17` &lt;chr&gt;,
-## #   `30-Sep-17` &lt;chr&gt;, `31-Dec-17` &lt;chr&gt;, `31-Mar-18` &lt;chr&gt;, `30-Jun-18` &lt;chr&gt;,
-## #   `30-Sep-18` &lt;chr&gt;, `31-Dec-18` &lt;chr&gt;, `31-Mar-19` &lt;chr&gt;, `30-Jun-19` &lt;chr&gt;,
-## #   `30-Sep-19` &lt;chr&gt;, `31-Dec-19` &lt;chr&gt;, `31-Mar-20` &lt;chr&gt;, `30-Jun-20` &lt;chr&gt;,
-## #   `30-Sep-20` &lt;chr&gt;, `31-Dec-20` &lt;chr&gt;, `31-Mar-21` &lt;chr&gt;, `30-Jun-21` &lt;chr&gt;,
-## #   `30-Sep-21` &lt;chr&gt;, `31-Dec-21` &lt;chr&gt;, `31-Mar-22` &lt;chr&gt;, …</code></pre>
+print(Annual_Data_A1_3b)</code></pre>
+<pre><code>## # A tibble: 4 × 34
+##   anything          `30-Jun-15` `30-Sep-15` `31-Dec-15` `31-Mar-16` `30-Jun-16`
+##   &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;      
+## 1 Males and females 3514        3426        3108        3246        3010       
+## 2 Adults            3100        3010        2742        2901        2659       
+## 3 18-20 year olds   386         387         345         329         328        
+## 4 15-17 year olds   28          29          21          16          23         
+## # ℹ 28 more variables: `30-Sep-16` &lt;chr&gt;, `31-Dec-16` &lt;chr&gt;, `31-Mar-17` &lt;chr&gt;,
+## #   `30-Jun-17` &lt;chr&gt;, `30-Sep-17` &lt;chr&gt;, `31-Dec-17` &lt;chr&gt;, `31-Mar-18` &lt;chr&gt;,
+## #   `30-Jun-18` &lt;chr&gt;, `30-Sep-18` &lt;chr&gt;, `31-Dec-18` &lt;chr&gt;, `31-Mar-19` &lt;chr&gt;,
+## #   `30-Jun-19` &lt;chr&gt;, `30-Sep-19` &lt;chr&gt;, `31-Dec-19` &lt;chr&gt;, `31-Mar-20` &lt;chr&gt;,
+## #   `30-Jun-20` &lt;chr&gt;, `30-Sep-20` &lt;chr&gt;, `31-Dec-20` &lt;chr&gt;, `31-Mar-21` &lt;chr&gt;,
+## #   `30-Jun-21` &lt;chr&gt;, `30-Sep-21` &lt;chr&gt;, `31-Dec-21` &lt;chr&gt;, `31-Mar-22` &lt;chr&gt;,
+## #   `30-Jun-22` &lt;chr&gt;, `30-Sep-22` &lt;chr&gt;, `31-Dec-22` &lt;chr&gt;, …</code></pre>
 
 
 
